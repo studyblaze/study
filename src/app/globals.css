@@ -270,7 +270,7 @@ h1, h2, h3, .font-tactical {
 
 .canvas-editor:empty::before {
   content: attr(data-placeholder);
-  color: rgba(71, 85, 105, 0.56);
+  color: rgba(15, 23, 42, 0.52);
   pointer-events: none;
 }
 
@@ -282,6 +282,34 @@ h1, h2, h3, .font-tactical {
 
 .canvas-editor {
   font-size: 1.05rem;
+  color: #0f172a;
+  font-weight: 500;
+  text-shadow: 0 0 0 transparent;
+  caret-color: #0f172a;
+}
+
+.canvas-editor strong,
+.canvas-render strong {
+  color: #020617;
+}
+
+.canvas-editor em,
+.canvas-render em {
+  color: #1e293b;
+}
+
+.canvas-editor a,
+.canvas-render a {
+  color: #065f46;
+}
+
+.canvas-editor h1,
+.canvas-editor h2,
+.canvas-editor h3,
+.canvas-render h1,
+.canvas-render h2,
+.canvas-render h3 {
+  color: #020617;
 }
 
 .canvas-editor img,

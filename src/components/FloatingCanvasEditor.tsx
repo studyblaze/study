@@ -401,7 +401,7 @@ export default function FloatingCanvasEditor({
             <div className="cloud-puff cloud-puff-c" />
             <div className="cloud-puff cloud-puff-d" />
             <div className="cloud-sheet relative flex h-full min-h-[22rem] flex-col overflow-hidden">
-                <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.96),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(74,222,128,0.08),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.8),rgba(255,255,255,0.2)_26%,transparent_42%)]" />
+                <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.82),transparent_22%),radial-gradient(circle_at_bottom_right,rgba(74,222,128,0.06),transparent_26%),linear-gradient(180deg,rgba(255,255,255,0.5),rgba(248,250,252,0.3)_22%,rgba(241,245,249,0.18)_42%,transparent_62%)]" />
 
                 <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 border-b border-slate-200/70 bg-white/72 px-5 py-4 backdrop-blur-xl sm:px-8">
                     <div className="flex min-w-0 flex-wrap items-center gap-3">
@@ -423,7 +423,7 @@ export default function FloatingCanvasEditor({
                 </div>
 
                 <div className="relative z-10 px-5 pb-4 pt-4 sm:px-8">
-                    <div className="rounded-[1.5rem] border border-dashed border-emerald-300/45 bg-emerald-50/80 px-5 py-4 text-left">
+                    <div className="rounded-[1.5rem] border border-dashed border-emerald-300/45 bg-white/88 px-5 py-4 text-left shadow-[0_12px_25px_rgba(15,23,42,0.06)]">
                         <div className="font-tactical text-[10px] uppercase tracking-[0.45em] text-emerald-700">
                             Floating Cloud Canvas
                         </div>
