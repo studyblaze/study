@@ -1,7 +1,5 @@
-import { createClient } from '@supabase/supabase-js';
 import { NextResponse } from 'next/server';
-
-const supabase = createClient( process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY! );
+import { getServiceSupabase } from '../../_lib/supabase';
 
 export async function POST(req: Request) {
     const { subject, questionNumber, questionText, answerText } = await req.json();
@@ -11,6 +9,7 @@ export async function POST(req: Request) {
     }
 
     try {
+        const supabase = getServiceSupabase();
         // Upsert question data
         const { data, error } = await supabase
             .from('subject_questions')

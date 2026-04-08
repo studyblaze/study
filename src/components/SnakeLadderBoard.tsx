@@ -20,6 +20,7 @@ const JUMPS: Record<string, Record<number, number>> = {
 export default function SnakeLadderBoard({ currentBox = 1, totalBoxes = 120, subjectKey = "M4" }: SnakeLadderBoardProps) {
     const { openQuestion } = useGamification();
     const COLS = 12;
+    const urgentM4Nodes = useMemo(() => new Set([1, 2, 3, 4]), []);
 
     const getNodeCoords = useMemo(() => (num: number) => {
         const index = num - 1;
@@ -185,6 +186,7 @@ export default function SnakeLadderBoard({ currentBox = 1, totalBoxes = 120, sub
                     const { x, y } = getNodeCoords(num);
                     const isCurrent = num === currentBox;
                     const isPassed = num < currentBox;
+                    const isUrgentM4Node = subjectKey === 'M4' && urgentM4Nodes.has(num);
 
                     let scale = isPassed ? 0.7 : 1;
                     let neuronColor = `rgba(180, 180, 220, 0.4)`;
@@ -232,6 +234,32 @@ export default function SnakeLadderBoard({ currentBox = 1, totalBoxes = 120, sub
                                         animate={{ scale: [1, 3], opacity: [0.5, 0] }} 
                                         transition={{ duration: 2, repeat: Infinity }} 
                                     />
+                                )}
+
+                                {isUrgentM4Node && (
+                                    <>
+                                        <motion.div
+                                            className="pointer-events-none absolute inset-[-6px] rounded-full border border-red-500/80"
+                                            animate={{ scale: [1, 1.5, 1], opacity: [0.95, 0.2, 0.95] }}
+                                            transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+                                        />
+                                        <motion.div
+                                            className="pointer-events-none absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-[9px] font-black text-white shadow-[0_0_18px_rgba(239,68,68,0.9)]"
+                                            animate={{ scale: [1, 1.18, 1], rotate: [0, 8, -8, 0] }}
+                                            transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+                                        >
+                                            !
+                                        </motion.div>
+                                        <motion.div
+                                            className="pointer-events-none absolute -inset-4 rounded-full"
+                                            style={{
+                                                background:
+                                                    'radial-gradient(circle, rgba(239,68,68,0.28) 0%, rgba(239,68,68,0.14) 38%, transparent 70%)',
+                                            }}
+                                            animate={{ opacity: [0.2, 0.65, 0.2] }}
+                                            transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+                                        />
+                                    </>
                                 )}
                             </div>
                         </motion.div>

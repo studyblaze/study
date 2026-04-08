@@ -1,7 +1,5 @@
-import { createClient } from '@supabase/supabase-js';
 import { NextResponse } from 'next/server';
-
-const supabase = createClient( process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY! );
+import { getServiceSupabase } from '../_lib/supabase';
 
 export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
@@ -13,6 +11,7 @@ export async function GET(req: Request) {
     }
 
     try {
+        const supabase = getServiceSupabase();
         const { data: question, error } = await supabase
             .from('subject_questions')
             .select('*')

@@ -1,10 +1,5 @@
-import { createClient } from '@supabase/supabase-js';
 import { NextResponse } from 'next/server';
-
-const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+import { getServiceSupabase } from '../_lib/supabase';
 
 const JUMPS: Record<string, Record<number, number>> = {
     "M4": { 4: 25, 13: 46, 33: 49, 42: 63, 50: 69, 27: 5, 40: 21, 43: 18 },
@@ -24,6 +19,7 @@ export async function POST(req: Request) {
     const { userId, type, topicName, subject = "M4" } = await req.json();
 
     try {
+        const supabase = getServiceSupabase();
         const { data: mission, error: missionError } = await supabase
             .from('user_daily_missions')
             .select('*')
@@ -103,6 +99,7 @@ export async function GET(req: Request) {
     const userId = searchParams.get('userId');
 
     try {
+        const supabase = getServiceSupabase();
         let { data: mission, error } = await supabase
             .from('user_daily_missions')
             .select('*')

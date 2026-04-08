@@ -1,13 +1,9 @@
-import { createClient } from '@supabase/supabase-js';
-
-const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+import { getServiceSupabase } from '../_lib/supabase';
 
 const BUCKET = process.env.SUPABASE_M4_ASSETS_BUCKET || 'm4-assets';
 
 export async function GET(req: Request) {
+    const supabase = getServiceSupabase();
     const { searchParams } = new URL(req.url);
     const path = searchParams.get('path');
 
