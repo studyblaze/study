@@ -1,0 +1,9 @@
+﻿[dotenv@17.3.1] injecting env (20) from .env.local -- tip: ≡ƒöÉ prevent building .env in docker: https://dotenvx.com/prebuild
+--- SEARCHING FOR GHOST SESSIONS ON TUE 17 ---
+Found 2 sessions on 2026-03-17
+
+Ghost Sessions (Sessions with no bookings): 2
+- ID: 8fa0489f-3701-4e43-96bf-6ba0898921d2 | Topic: Mathematics | Time: 00:00:00 | Status: scheduled | TutorID: 3
+- ID: 847feaa0-6dd4-456a-a377-86ac3156fa2d | Topic: Mathematics | Time: 00:30:00 | Status: scheduled | TutorID: 3
+
+Cancelled Sessions: 0

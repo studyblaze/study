@@ -1,0 +1,33 @@
+﻿Querying for student_id: d9ce4e44-a0ce-41a4-aec0-086c697960b0
+Found 1 bookings:
+[
+  {
+    "id": "bf6972ae-a0e3-4afa-888b-370a32233d1e",
+    "session_id": "d174eff0-06c9-4c40-9207-4305acf3330a",
+    "student_id": "d9ce4e44-a0ce-41a4-aec0-086c697960b0",
+    "status": "confirmed",
+    "amount": 5.000000000000004,
+    "created_at": "2026-03-04T19:32:42.254184+00:00",
+    "is_demo": true,
+    "payment_method": "razorpay",
+    "tutor_share": 0,
+    "company_share": 5.000000000000004,
+    "amount_inr": null,
+    "currency": "INR"
+  }
+]
+
+Sessions on March 9th:
+[
+  {
+    "id": "9235bfd8-5a97-4591-84fe-fff8a67f7ac3",
+    "tutor_id": 3,
+    "topic": "Mathematics",
+    "date": "2026-03-09",
+    "time": "17:00:00",
+    "max_students": 1,
+    "status": "scheduled",
+    "created_at": "2026-03-09T15:04:58.255307+00:00",
+    "timezone": "Europe/Copenhagen"
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "profiles": [],
+  "bookings": null,
+  "bookings2": null,
+  "pError": null,
+  "bError": {
+    "code": "42703",
+    "details": null,
+    "hint": null,
+    "message": "column bookings.tutor_id does not exist"
+  },
+  "bError2": {
+    "code": "42703",
+    "details": null,
+    "hint": null,
+    "message": "column bookings.tutor_id does not exist"
+  }
+}

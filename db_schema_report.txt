@@ -1,0 +1,12 @@
+--- TABLE: tutors ---
+COLUMNS: id, profile_id, subject, bio, hourly_rate, rating, is_verified, earnings, verification_status, application_data, identity_docs_url, joined_at, availability, intro_video_url, total_lessons_completed, rejection_reason, timezone, price_5, price_10, currency
+--- TABLE: bookings ---
+COLUMNS: id, session_id, student_id, status, amount, created_at, is_demo, payment_method, tutor_share, company_share, amount_inr, currency, promo_code
+--- TABLE: sessions ---
+COLUMNS: id, tutor_id, topic, date, time, max_students, status, created_at, timezone, exam_type, duration_minutes
+--- TABLE: transactions ---
+COLUMNS: id, user_id, amount, description, type, status, created_at, currency, amount_inr, receipt_id
+--- TABLE: wallets ---
+COLUMNS: id, user_id, balance, currency, created_at, updated_at
+--- TABLE: profiles ---
+COLUMNS: id, full_name, email, role, avatar_url, created_at, status, timezone, country, calendar_connected, google_calendar_token, google_calendar_refresh_token, last_login, last_ip, city, region, isp, currency, currency_symbol

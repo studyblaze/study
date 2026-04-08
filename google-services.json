@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "440726766492",
+    "project_id": "grouptutors-41da4",
+    "storage_bucket": "grouptutors-41da4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:440726766492:android:8018498a9176e7a316be59",
+        "android_client_info": {
+          "package_name": "com.grouptutors.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDD-kIyoLtcF7IjBjNM3datVezXNXp1mI4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

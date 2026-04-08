@@ -1,0 +1,1 @@
+﻿src/app/search/page.tsx(234,42): error TS2304: Cannot find name 'MessageSquare'.

@@ -1,0 +1,9 @@
+{
+  "data": null,
+  "error": {
+    "code": "23503",
+    "details": "Key (tutor_id)=(152e04eb-cf7e-462f-8da4-4c405903b6dc) is not present in table \"users\".",
+    "hint": null,
+    "message": "insert or update on table \"recordings\" violates foreign key constraint \"recordings_tutor_id_fkey\""
+  }
+}

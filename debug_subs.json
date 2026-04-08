@@ -1,0 +1,67 @@
+[
+  {
+    "id": "cea62915-acf4-438e-a17a-fbf5999b9504",
+    "student_id": "57fd38c9-e2e8-4d2a-88e4-5705ca162f72",
+    "tutor_id": 5,
+    "plan_hours": 20,
+    "balance_hours": 20,
+    "status": "active",
+    "billing_cycle_start": "2026-03-13T23:59:40.280167+00:00",
+    "next_billing_date": "2026-04-13T23:59:40.280167+00:00",
+    "razorpay_subscription_id": null,
+    "created_at": "2026-03-13T23:59:40.280167+00:00",
+    "updated_at": "2026-03-13T23:59:40.280167+00:00"
+  },
+  {
+    "id": "a709e1de-2198-4c0e-9283-164dbe46ace1",
+    "student_id": "d9ce4e44-a0ce-41a4-aec0-086c697960b0",
+    "tutor_id": 5,
+    "plan_hours": 4,
+    "balance_hours": 4,
+    "status": "active",
+    "billing_cycle_start": "2026-03-14T15:26:05.35675+00:00",
+    "next_billing_date": "2026-04-14T15:26:05.35675+00:00",
+    "razorpay_subscription_id": null,
+    "created_at": "2026-03-14T15:26:05.35675+00:00",
+    "updated_at": "2026-03-14T15:26:05.35675+00:00"
+  },
+  {
+    "id": "95a0bb65-d715-4400-aefd-ef3c91f306fe",
+    "student_id": "d9ce4e44-a0ce-41a4-aec0-086c697960b0",
+    "tutor_id": 3,
+    "plan_hours": 4,
+    "balance_hours": 0,
+    "status": "active",
+    "billing_cycle_start": "2026-03-14T19:16:14.051225+00:00",
+    "next_billing_date": "2026-04-14T19:16:14.051225+00:00",
+    "razorpay_subscription_id": null,
+    "created_at": "2026-03-14T19:16:14.051225+00:00",
+    "updated_at": "2026-03-14T19:16:14.051225+00:00"
+  },
+  {
+    "id": "82aacee7-46ec-4449-bd6b-683b1281b483",
+    "student_id": "d9ce4e44-a0ce-41a4-aec0-086c697960b0",
+    "tutor_id": 3,
+    "plan_hours": 4,
+    "balance_hours": 0,
+    "status": "active",
+    "billing_cycle_start": "2026-03-15T05:42:06.515099+00:00",
+    "next_billing_date": "2026-04-15T05:42:06.515099+00:00",
+    "razorpay_subscription_id": null,
+    "created_at": "2026-03-15T05:42:06.515099+00:00",
+    "updated_at": "2026-03-15T05:42:06.515099+00:00"
+  },
+  {
+    "id": "7dc18c40-b1bc-4d31-b59f-6ebd202326fe",
+    "student_id": "0706fc15-bea8-4b26-b3b5-018548a4da27",
+    "tutor_id": 3,
+    "plan_hours": 8,
+    "balance_hours": 6,
+    "status": "active",
+    "billing_cycle_start": "2026-03-16T21:37:45.426315+00:00",
+    "next_billing_date": "2026-04-16T21:37:45.426315+00:00",
+    "razorpay_subscription_id": null,
+    "created_at": "2026-03-16T21:37:45.426315+00:00",
+    "updated_at": "2026-03-16T21:37:45.426315+00:00"
+  }
+]

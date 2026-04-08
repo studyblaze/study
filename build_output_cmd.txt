@@ -1,0 +1,23 @@
+
+> scratch@0.1.0 build
+> next build
+
+▲ Next.js 16.1.6 (Turbopack)
+- Environments: .env.production.local, .env.local
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 118s
+  Running TypeScript ...
+Failed to compile.
+
+./src/components/ClientLayoutWrapper.tsx:126:49
+Type error: Cannot find name 'supabase'.
+
+[0m [90m 124 |[39m             [36mtry[39m {
+ [90m 125 |[39m                 [90m// Fetch ONLY my specific tutor row (takes ~50ms instead of 8 seconds)[39m
+[31m[1m>[22m[39m[90m 126 |[39m                 [36mconst[39m { data[33m:[39m myTutor } [33m=[39m [36mawait[39m supabase
+ [90m     |[39m                                                 [31m[1m^[22m[39m
+ [90m 127 |[39m                     [33m.[39m[36mfrom[39m([32m'tutors'[39m)
+ [90m 128 |[39m                     [33m.[39mselect([32m'verificationStatus, isVerified'[39m)
+ [90m 129 |[39m                     [33m.[39meq([32m'profile_id'[39m[33m,[39m user[33m.[39mid)[0m
+Next.js build worker exited with code: 1 and signal: null

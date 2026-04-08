@@ -1,0 +1,43 @@
+﻿src/app/dashboard/recordings/page.tsx(4,26): error TS2307: Cannot find module '@/lib/supabaseClient' or its corresponding type declarations.
+src/app/dashboard/recordings/page.tsx(6,25): error TS2307: Cannot find module '@/components/AuthContext' or its corresponding type declarations.
+src/app/dashboard/recordings/page.tsx(7,34): error TS2307: Cannot find module '@/components/AdminSettingsContext' or its corresponding type declarations.
+src/app/dashboard/recordings/page.tsx(120,20): error TS2322: Type '{ children: string; jsx: true; }' is not assignable to type 'DetailedHTMLProps<StyleHTMLAttributes<HTMLStyleElement>, HTMLStyleElement>'.
+  Property 'jsx' does not exist on type 'DetailedHTMLProps<StyleHTMLAttributes<HTMLStyleElement>, HTMLStyleElement>'.
+src/app/live-classroom/LiveClassroomManager.tsx(9,26): error TS2307: Cannot find module '@/lib/supabaseClient' or its corresponding type declarations.
+src/app/live-classroom/LiveClassroomManager.tsx(11,25): error TS2307: Cannot find module '@/components/AuthContext' or its corresponding type declarations.
+src/app/live-classroom/LiveClassroomManager.tsx(12,26): error TS2307: Cannot find module '@/components/ThemeProvider' or its corresponding type declarations.
+src/app/live-classroom/LiveClassroomManager.tsx(13,30): error TS2307: Cannot find module '@/components/MessagingContext' or its corresponding type declarations.
+src/app/live-classroom/LiveClassroomManager.tsx(14,28): error TS2307: Cannot find module '@/components/BookingContext' or its corresponding type declarations.
+src/app/live-classroom/LiveClassroomManager.tsx(15,25): error TS2307: Cannot find module '@/components/ThemeToggle' or its corresponding type declarations.
+src/app/live-classroom/LiveClassroomManager.tsx(21,38): error TS1323: Dynamic imports are only supported when the '--module' flag is set to 'es2020', 'es2022', 'esnext', 'commonjs', 'amd', 'system', 'umd', 'node16', 'node18', 'node20', or 'nodenext'.
+src/app/live-classroom/LiveClassroomManager.tsx(21,45): error TS2307: Cannot find module '@/components/DailyClassroom' or its corresponding type declarations.
+src/app/live-classroom/LiveClassroomManager.tsx(22,40): error TS1323: Dynamic imports are only supported when the '--module' flag is set to 'es2020', 'es2022', 'esnext', 'commonjs', 'amd', 'system', 'umd', 'node16', 'node18', 'node20', or 'nodenext'.
+src/app/live-classroom/LiveClassroomManager.tsx(22,47): error TS2307: Cannot find module '@/components/LiveKitClassroom' or its corresponding type declarations.
+src/app/live-classroom/LiveClassroomManager.tsx(23,34): error TS1323: Dynamic imports are only supported when the '--module' flag is set to 'es2020', 'es2022', 'esnext', 'commonjs', 'amd', 'system', 'umd', 'node16', 'node18', 'node20', or 'nodenext'.
+src/app/live-classroom/LiveClassroomManager.tsx(23,41): error TS2307: Cannot find module '@/components/Whiteboard' or its corresponding type declarations.
+src/app/live-classroom/LiveClassroomManager.tsx(25,34): error TS2307: Cannot find module '@/components/ClassroomWaitingRoom' or its corresponding type declarations.
+src/app/live-classroom/LiveClassroomManager.tsx(26,26): error TS2307: Cannot find module '@/components/LiveCaptions' or its corresponding type declarations.
+src/app/live-classroom/LiveClassroomManager.tsx(27,35): error TS2307: Cannot find module '@/components/MessagesComponent' or its corresponding type declarations.
+src/app/live-classroom/LiveClassroomManager.tsx(716,29): error TS2322: Type '{ icon: Element; active: boolean; onClick: () => void; label: string; }' is not assignable to type 'IntrinsicAttributes & { icon: any; active: boolean; onClick: () => void; }'.
+  Property 'label' does not exist on type 'IntrinsicAttributes & { icon: any; active: boolean; onClick: () => void; }'.
+src/app/live-classroom/LiveClassroomManager.tsx(1070,37): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: {}, context?: any): string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<...> | Component<...>', gave the following error.
+    Type '{ token: string; serverUrl: string; onLeave: () => void; isScreenSharing: boolean; videoBackground: string; }' is not assignable to type 'IntrinsicAttributes'.
+      Property 'token' does not exist on type 'IntrinsicAttributes'.
+  Overload 2 of 2, '(props: {}): string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<...> | Component<...>', gave the following error.
+    Type '{ token: string; serverUrl: string; onLeave: () => void; isScreenSharing: boolean; videoBackground: string; }' is not assignable to type 'IntrinsicAttributes'.
+      Property 'token' does not exist on type 'IntrinsicAttributes'.
+src/app/live-classroom/LiveClassroomManager.tsx(1083,45): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: {}, context?: any): string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<...> | Component<...>', gave the following error.
+    Type '{ participantCount: number; variant: string; }' is not assignable to type 'IntrinsicAttributes'.
+      Property 'participantCount' does not exist on type 'IntrinsicAttributes'.
+  Overload 2 of 2, '(props: {}): string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<...> | Component<...>', gave the following error.
+    Type '{ participantCount: number; variant: string; }' is not assignable to type 'IntrinsicAttributes'.
+      Property 'participantCount' does not exist on type 'IntrinsicAttributes'.
+src/app/live-classroom/LiveClassroomManager.tsx(1088,45): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: {}, context?: any): string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<...> | Component<...>', gave the following error.
+    Type '{ participantCount: number; variant: string; }' is not assignable to type 'IntrinsicAttributes'.
+      Property 'participantCount' does not exist on type 'IntrinsicAttributes'.
+  Overload 2 of 2, '(props: {}): string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<...> | Component<...>', gave the following error.
+    Type '{ participantCount: number; variant: string; }' is not assignable to type 'IntrinsicAttributes'.
+      Property 'participantCount' does not exist on type 'IntrinsicAttributes'.

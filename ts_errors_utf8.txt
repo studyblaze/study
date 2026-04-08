@@ -1,0 +1,13 @@
+﻿src/app/dashboard/page.tsx(505,72): error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.
+src/app/dashboard/page.tsx(505,102): error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.
+src/app/dashboard/page.tsx(506,73): error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.
+src/app/dashboard/page.tsx(1266,69): error TS2339: Property 'avatar_url' does not exist on type 'TutorData'.
+src/app/dashboard/page.tsx(1266,117): error TS2339: Property 'full_name' does not exist on type 'TutorData'.
+src/app/dashboard/page.tsx(1268,143): error TS2339: Property 'full_name' does not exist on type 'TutorData'.
+src/app/tutor-dashboard/wallet/page.tsx(154,94): error TS2304: Cannot find name 'convertPrice'.
+src/app/tutor-dashboard/wallet/page.tsx(221,51): error TS2304: Cannot find name 'convertPrice'.
+src/lib/livekit/room-manager.ts(116,21): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(roomName: string, output: EncodedOutputs | EncodedFileOutput | StreamOutput | SegmentedFileOutput, opts?: RoomCompositeOptions | undefined): Promise<...>', gave the following error.
+    Object literal may only specify known properties, and 's3' does not exist in type 'EncodedOutputs | EncodedFileOutput | StreamOutput | SegmentedFileOutput'.
+  Overload 2 of 2, '(roomName: string, output: EncodedOutputs | EncodedFileOutput | StreamOutput | SegmentedFileOutput, layout?: string | undefined, options?: EncodingOptionsPreset | ... 1 more ... | undefined, audioOnly?: boolean | undefined, videoOnly?: boolean | undefined, customBaseUrl?: string | undefined, audioMixing?: AudioMixing | undefined): Promise<...>', gave the following error.
+    Object literal may only specify known properties, and 's3' does not exist in type 'EncodedOutputs | EncodedFileOutput | StreamOutput | SegmentedFileOutput'.

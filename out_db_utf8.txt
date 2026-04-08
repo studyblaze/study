@@ -1,0 +1,64 @@
+﻿[dotenv@17.3.1] injecting env (17) from .env.local -- tip: ΓÜí∩╕Å secrets for agents: https://dotenvx.com/as2
+--- Transactions ---
+[]
+--- Bookings ---
+[
+  {
+    id: 'fa79ab7a-efe8-4105-b172-a5e557f0536a',
+    session_id: '163e3777-4b78-4159-bca3-11146e952a54',
+    student_id: 'db1994ef-754b-469d-9c21-8da397b40245',
+    status: 'confirmed',
+    amount: 0,
+    created_at: '2026-03-04T00:28:35.810727+00:00',
+    is_demo: true,
+    payment_method: 'razorpay',
+    tutor_share: 0,
+    company_share: 0,
+    amount_inr: null,
+    currency: 'INR'
+  },
+  {
+    id: '3b12356b-336f-4189-a949-6ddf93da59a8',
+    session_id: '2c9b2e8d-0527-42cb-97cd-197e5c98ffd6',
+    student_id: 'a0125ac3-7238-4926-a6aa-f1c3f9f2cb63',
+    status: 'confirmed',
+    amount: 0,
+    created_at: '2026-03-04T17:56:54.369902+00:00',
+    is_demo: true,
+    payment_method: 'razorpay',
+    tutor_share: 0,
+    company_share: 0,
+    amount_inr: null,
+    currency: 'INR'
+  },
+  {
+    id: 'bf6972ae-a0e3-4afa-888b-370a32233d1e',
+    session_id: 'd174eff0-06c9-4c40-9207-4305acf3330a',
+    student_id: 'd9ce4e44-a0ce-41a4-aec0-086c697960b0',
+    status: 'confirmed',
+    amount: 5.000000000000004,
+    created_at: '2026-03-04T19:32:42.254184+00:00',
+    is_demo: true,
+    payment_method: 'razorpay',
+    tutor_share: 0,
+    company_share: 5.000000000000004,
+    amount_inr: 71.65000000000006,
+    currency: 'DKK'
+  },
+  {
+    id: '6f274e8b-7d29-4f81-b5b1-d43a6622947a',
+    session_id: '9235bfd8-5a97-4591-84fe-fff8a67f7ac3',
+    student_id: 'd9ce4e44-a0ce-41a4-aec0-086c697960b0',
+    status: 'confirmed',
+    amount: 5,
+    created_at: '2026-03-10T02:56:33.641987+00:00',
+    is_demo: false,
+    payment_method: 'razorpay',
+    tutor_share: 3,
+    company_share: 2,
+    amount_inr: 71.65,
+    currency: 'DKK'
+  }
+]
+--- Wallets ---
+[]

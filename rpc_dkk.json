@@ -1,0 +1,9 @@
+{
+  "data": null,
+  "error": {
+    "code": "PGRST202",
+    "details": "Searched for the function public.convert_currency with parameters amount, from_currency, to_currency or with a single unnamed json/jsonb parameter, but no matches were found in the schema cache.",
+    "hint": null,
+    "message": "Could not find the function public.convert_currency(amount, from_currency, to_currency) in the schema cache"
+  }
+}

@@ -1,0 +1,50 @@
+﻿[dotenv@17.3.1] injecting env (20) from .env.local -- tip: ΓÜÖ∩╕Å  load multiple .env files with { path: ['.env.local', '.env'] }
+[
+  {
+    "id": "57fd38c9-e2e8-4d2a-88e4-5705ca162f72",
+    "full_name": "Aeraxia",
+    "email": "aeraxiagroupnew@gmail.com",
+    "role": "student"
+  },
+  {
+    "id": "9300f39d-d5b5-45a8-9b72-d08e1d36aeff",
+    "full_name": "",
+    "email": "test@example.com",
+    "role": "student"
+  },
+  {
+    "id": "47faf525-ceb8-4005-afd7-03b4edb6a2b9",
+    "full_name": "dan ban",
+    "email": "dban1157@gmail.com",
+    "role": "admin"
+  },
+  {
+    "id": "3ca81b54-d7b2-470f-94a6-d9a4c596e80b",
+    "full_name": "VIK SVCZvstugjfiys",
+    "email": "vik709662@gmail.com",
+    "role": "student"
+  },
+  {
+    "id": "d671ed97-57c8-45c2-8af1-54810fee0ea3",
+    "full_name": "",
+    "email": "sara@example.com",
+    "role": "student"
+  },
+  {
+    "id": "accf2e2e-7951-4abe-ac96-9d0f3381371a",
+    "full_name": "aktuquestionpapers hnv",
+    "email": "aktuquestionpapers@gmail.com",
+    "role": "student"
+  },
+  {
+    "id": "db1994ef-754b-469d-9c21-8da397b40245",
+    "full_name": "GroupTutors Support",
+    "email": "grouptutorsnew@gmail.com",
+    "role": "admin"
+  },
+  {
+    "id": "9d27373a-137a-4a5f-9eb2-da0c0840944a",
+    "full_name": "Dmytro Dmytrenko",
+    "email": "d.dmitrencko2017@gmail.com",
+    "role": "student"
+  },

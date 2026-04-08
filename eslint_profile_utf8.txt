@@ -1,0 +1,6 @@
+﻿
+f:\GroupLearn\src\app\tutor\[id]\TutorProfileClient.tsx
+  502:88  error  Parsing error: Invalid character
+
+Γ£û 1 problem (1 error, 0 warnings)
+

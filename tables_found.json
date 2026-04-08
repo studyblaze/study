@@ -1,0 +1,7 @@
+{
+  "site_settings": true,
+  "profiles": true,
+  "analytics_config": false,
+  "ga_config": false,
+  "google_config": false
+}

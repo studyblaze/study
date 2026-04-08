@@ -1,0 +1,37 @@
+{
+  "site_settings": [
+    "id",
+    "founder_name",
+    "profile_pic_url",
+    "founders",
+    "updated_at",
+    "logo_url",
+    "ga_property_id",
+    "ga_client_email",
+    "ga_private_key"
+  ],
+  "analytics_visits": [
+    "id",
+    "page_path",
+    "source",
+    "session_duration_seconds",
+    "bounced",
+    "user_agent",
+    "created_at",
+    "ip_address",
+    "country",
+    "city",
+    "region",
+    "latitude",
+    "longitude"
+  ],
+  "seo_keywords": [
+    "id",
+    "keyword",
+    "rank",
+    "clicks",
+    "impressions",
+    "created_at",
+    "updated_at"
+  ]
+}

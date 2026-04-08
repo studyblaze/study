@@ -1,0 +1,21 @@
+﻿
+ name                               value               environments                        created    
+ LIVEKIT_API_SECRET                 Encrypted           Production                          21h ago    
+ LIVEKIT_API_KEY                    Encrypted           Production                          21h ago    
+ LIVEKIT_URL                        Encrypted           Production                          21h ago    
+ GA_PRIVATE_KEY                     Encrypted           Production                          6d ago     
+ GA_CLIENT_EMAIL                    Encrypted           Production                          6d ago     
+ GA_PROPERTY_ID                     Encrypted           Production                          6d ago     
+ RAZORPAY_KEY_SECRET                Encrypted           Development, Preview, Production    7d ago     
+ NEXT_PUBLIC_RAZORPAY_KEY_ID        Encrypted           Development, Preview, Production    7d ago     
+ SUPABASE_SERVICE_ROLE_KEY          Encrypted           Development                         10d ago    
+ RESEND_API_KEY                     Encrypted           Development                         10d ago    
+ SUPABASE_SERVICE_ROLE_KEY          Encrypted           Preview                             10d ago    
+ RESEND_API_KEY                     Encrypted           Preview                             10d ago    
+ SUPABASE_SERVICE_ROLE_KEY          Encrypted           Production                          10d ago    
+ NEXT_PUBLIC_SUPABASE_ANON_KEY      Encrypted           Production                          10d ago    
+ NEXT_PUBLIC_SUPABASE_URL           Encrypted           Production                          10d ago    
+ RESEND_API_KEY                     Encrypted           Production                          10d ago    
+ GOOGLE_CLIENT_SECRET               Encrypted           Production, Preview, Development    14d ago    
+ NEXT_PUBLIC_GOOGLE_CLIENT_ID       Encrypted           Production, Preview, Development    14d ago    
+

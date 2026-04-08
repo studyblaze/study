@@ -1,0 +1,31 @@
+﻿
+ name                               value               environments                        created    
+ SUPABASE_SERVICE_ROLE_KEY          Encrypted           Development                         11s ago    
+ SUPABASE_SERVICE_ROLE_KEY          Encrypted           Preview                             16s ago    
+ SUPABASE_SERVICE_ROLE_KEY          Encrypted           Production                          23s ago    
+ NEXT_PUBLIC_SUPABASE_ANON_KEY      Encrypted           Development                         2m ago     
+ NEXT_PUBLIC_SUPABASE_ANON_KEY      Encrypted           Preview                             2m ago     
+ NEXT_PUBLIC_SUPABASE_ANON_KEY      Encrypted           Production                          2m ago     
+ NEXT_PUBLIC_SUPABASE_URL           Encrypted           Development                         4m ago     
+ NEXT_PUBLIC_SUPABASE_URL           Encrypted           Preview                             4m ago     
+ NEXT_PUBLIC_SUPABASE_URL           Encrypted           Production                          4m ago     
+ LIVEKIT_API_SECRET                 Encrypted           Development                         5m ago     
+ LIVEKIT_API_SECRET                 Encrypted           Preview                             5m ago     
+ LIVEKIT_API_SECRET                 Encrypted           Production                          5m ago     
+ LIVEKIT_API_KEY                    Encrypted           Development                         5m ago     
+ LIVEKIT_API_KEY                    Encrypted           Preview                             6m ago     
+ LIVEKIT_API_KEY                    Encrypted           Production                          6m ago     
+ LIVEKIT_URL                        Encrypted           Development                         1h ago     
+ LIVEKIT_URL                        Encrypted           Preview                             1h ago     
+ LIVEKIT_URL                        Encrypted           Production                          1h ago     
+ GA_PRIVATE_KEY                     Encrypted           Production                          6d ago     
+ GA_CLIENT_EMAIL                    Encrypted           Production                          6d ago     
+ GA_PROPERTY_ID                     Encrypted           Production                          6d ago     
+ RAZORPAY_KEY_SECRET                Encrypted           Development, Preview, Production    7d ago     
+ NEXT_PUBLIC_RAZORPAY_KEY_ID        Encrypted           Development, Preview, Production    7d ago     
+ RESEND_API_KEY                     Encrypted           Development                         10d ago    
+ RESEND_API_KEY                     Encrypted           Preview                             10d ago    
+ RESEND_API_KEY                     Encrypted           Production                          10d ago    
+ GOOGLE_CLIENT_SECRET               Encrypted           Production, Preview, Development    14d ago    
+ NEXT_PUBLIC_GOOGLE_CLIENT_ID       Encrypted           Production, Preview, Development    14d ago    
+

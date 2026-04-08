@@ -1,0 +1,30 @@
+# GroupTutors Environment Variables Backup Template 🔐
+
+Copy and save this template in a SECURE location (e.g., a password manager).
+DO NOT share these keys publicly or commit them to GitHub.
+
+# Supabase
+NEXT_PUBLIC_SUPABASE_URL="https://exkgplqcdtoxfmxqkdpl.supabase.co"
+NEXT_PUBLIC_SUPABASE_ANON_KEY=""
+SUPABASE_SERVICE_ROLE_KEY=""
+
+# Email (Resend)
+RESEND_API_KEY=""
+
+# Payments (Stripe)
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=""
+STRIPE_SECRET_KEY=""
+STRIPE_WEBHOOK_SECRET=""
+
+# Payments (Razorpay)
+NEXT_PUBLIC_RAZORPAY_KEY_ID=""
+RAZORPAY_KEY_SECRET=""
+
+# Video/Classroom (LiveKit)
+LIVEKIT_URL="wss://grouptutors-4kxiyvhk.livekit.cloud"
+LIVEKIT_API_KEY=""
+LIVEKIT_API_SECRET=""
+
+# Google Auth
+NEXT_PUBLIC_GOOGLE_CLIENT_ID="115069525915-tj25mqnlrt6asegqifac1p0sdllfgam4.apps.googleusercontent.com"
+GOOGLE_CLIENT_SECRET=""
