@@ -16,6 +16,9 @@ interface DraftPayload {
     updatedAt: number;
 }
 
+const DRAFT_DB_NAME = 'm4-question-drafts';
+const DRAFT_STORE_NAME = 'drafts';
+
 function escapeHtml(value: string) {
     return value
         .replaceAll('&', '&amp;')
@@ -39,6 +42,90 @@ function formatCanvasContent(value: string) {
 
 function getDraftKey(subject: string, questionNumber: number) {
     return `m4-draft:${subject}:${questionNumber}`;
+}
+
+function openDraftDatabase() {
+    return new Promise<IDBDatabase>((resolve, reject) => {
+        if (typeof window === 'undefined' || !('indexedDB' in window)) {
+            reject(new Error('IndexedDB unavailable'));
+            return;
+        }
+
+        const request = window.indexedDB.open(DRAFT_DB_NAME, 1);
+
+        request.onupgradeneeded = () => {
+            const database = request.result;
+            if (!database.objectStoreNames.contains(DRAFT_STORE_NAME)) {
+                database.createObjectStore(DRAFT_STORE_NAME);
+            }
+        };
+
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = () => reject(request.error || new Error('Failed to open draft database'));
+    });
+}
+
+async function getStoredDraft(key: string) {
+    try {
+        const database = await openDraftDatabase();
+        return await new Promise<DraftPayload | null>((resolve, reject) => {
+            const transaction = database.transaction(DRAFT_STORE_NAME, 'readonly');
+            const store = transaction.objectStore(DRAFT_STORE_NAME);
+            const request = store.get(key);
+
+            request.onsuccess = () => resolve((request.result as DraftPayload | undefined) || null);
+            request.onerror = () => reject(request.error || new Error('Failed to read draft'));
+        });
+    } catch {
+        try {
+            const fallback = window.localStorage.getItem(key);
+            return fallback ? (JSON.parse(fallback) as DraftPayload) : null;
+        } catch {
+            return null;
+        }
+    }
+}
+
+async function setStoredDraft(key: string, payload: DraftPayload) {
+    try {
+        const database = await openDraftDatabase();
+        await new Promise<void>((resolve, reject) => {
+            const transaction = database.transaction(DRAFT_STORE_NAME, 'readwrite');
+            const store = transaction.objectStore(DRAFT_STORE_NAME);
+            const request = store.put(payload, key);
+
+            request.onsuccess = () => resolve();
+            request.onerror = () => reject(request.error || new Error('Failed to store draft'));
+        });
+        return true;
+    } catch {
+        try {
+            window.localStorage.setItem(key, JSON.stringify(payload));
+            return true;
+        } catch {
+            return false;
+        }
+    }
+}
+
+async function removeStoredDraft(key: string) {
+    try {
+        const database = await openDraftDatabase();
+        await new Promise<void>((resolve, reject) => {
+            const transaction = database.transaction(DRAFT_STORE_NAME, 'readwrite');
+            const store = transaction.objectStore(DRAFT_STORE_NAME);
+            const request = store.delete(key);
+
+            request.onsuccess = () => resolve();
+            request.onerror = () => reject(request.error || new Error('Failed to remove draft'));
+        });
+    } catch {
+        try {
+            window.localStorage.removeItem(key);
+        } catch {
+            // Ignore storage cleanup failures.
+        }
+    }
 }
 
 export default function QuestionModal() {
@@ -105,13 +192,11 @@ export default function QuestionModal() {
         if (!selectedQuestion || !isMounted || hydratedDraftRef.current) return;
 
         const draftKey = getDraftKey(activeSubject, selectedQuestion.question_number);
-        const draftRaw = window.localStorage.getItem(draftKey);
-        hydratedDraftRef.current = true;
+        let cancelled = false;
 
-        if (!draftRaw) return;
-
-        try {
-            const parsed = JSON.parse(draftRaw) as DraftPayload;
+        void getStoredDraft(draftKey).then((parsed) => {
+            hydratedDraftRef.current = true;
+            if (cancelled || !parsed) return;
             if (!parsed.question && !parsed.answer) return;
 
             setEditData({
@@ -120,21 +205,27 @@ export default function QuestionModal() {
             });
             setSaveState('saved');
             setSaveMessage('Draft restored from this device');
-        } catch {
-            window.localStorage.removeItem(draftKey);
-        }
+        });
+
+        return () => {
+            cancelled = true;
+        };
     }, [activeSubject, isMounted, selectedQuestion]);
 
-    const persistDraftLocally = (payload: DraftPayload) => {
+    const persistDraftLocally = async (payload: DraftPayload) => {
         if (!selectedQuestion || !isMounted) return;
         const draftKey = getDraftKey(activeSubject, selectedQuestion.question_number);
-        window.localStorage.setItem(draftKey, JSON.stringify(payload));
+        const stored = await setStoredDraft(draftKey, payload);
+        if (!stored) {
+            setSaveState('error');
+            setSaveMessage('Draft storage full on this device');
+        }
     };
 
-    const clearSavedDraft = () => {
+    const clearSavedDraft = async () => {
         if (!selectedQuestion || !isMounted) return;
         const draftKey = getDraftKey(activeSubject, selectedQuestion.question_number);
-        window.localStorage.removeItem(draftKey);
+        await removeStoredDraft(draftKey);
     };
 
     const queueStatusReset = () => {
@@ -177,14 +268,14 @@ export default function QuestionModal() {
                 question: editData.question,
                 answer: editData.answer,
             };
-            clearSavedDraft();
+            await clearSavedDraft();
             setSaveState('saved');
             setSaveMessage(source === 'manual' ? 'Saved to database' : 'Auto-saved to database');
             queueStatusReset();
             return true;
         } catch (e) {
             const message = e instanceof Error ? e.message : 'Save failed';
-            persistDraftLocally({
+            void persistDraftLocally({
                 question: editData.question,
                 answer: editData.answer,
                 updatedAt: Date.now(),
@@ -198,7 +289,7 @@ export default function QuestionModal() {
     useEffect(() => {
         if (!selectedQuestion || !hydratedDraftRef.current) return;
 
-        persistDraftLocally({
+        void persistDraftLocally({
             question: editData.question,
             answer: editData.answer,
             updatedAt: Date.now(),
