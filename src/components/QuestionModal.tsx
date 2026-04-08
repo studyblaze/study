@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import FloatingCanvasEditor from './FloatingCanvasEditor';
@@ -8,6 +8,13 @@ import { useGamification } from './GamificationContext';
 
 type AppWindow = Window & { __USER_ID__?: string };
 type ClickVars = React.CSSProperties & { '--click-x': string; '--click-y': string };
+type SaveState = 'idle' | 'saving' | 'saved' | 'error';
+
+interface DraftPayload {
+    question: string;
+    answer: string;
+    updatedAt: number;
+}
 
 function escapeHtml(value: string) {
     return value
@@ -30,15 +37,32 @@ function formatCanvasContent(value: string) {
         .join('');
 }
 
+function getDraftKey(subject: string, questionNumber: number) {
+    return `m4-draft:${subject}:${questionNumber}`;
+}
+
 export default function QuestionModal() {
     const { selectedQuestion, clickOrigin, closeQuestion, refreshMission, activeSubject } = useGamification();
     const [isSolving, setIsSolving] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
     const [editData, setEditData] = useState({ question: '', answer: '' });
+    const [saveState, setSaveState] = useState<SaveState>('idle');
+    const [saveMessage, setSaveMessage] = useState('Auto-save ready');
+    const hydratedDraftRef = useRef(false);
+    const saveTimerRef = useRef<number | null>(null);
+    const statusTimerRef = useRef<number | null>(null);
+    const latestSavedRef = useRef({ question: '', answer: '' });
 
     useEffect(() => {
         setIsMounted(true);
         return () => setIsMounted(false);
+    }, []);
+
+    useEffect(() => {
+        return () => {
+            if (saveTimerRef.current) window.clearTimeout(saveTimerRef.current);
+            if (statusTimerRef.current) window.clearTimeout(statusTimerRef.current);
+        };
     }, []);
 
     useEffect(() => {
@@ -63,12 +87,137 @@ export default function QuestionModal() {
 
     useEffect(() => {
         if (selectedQuestion) {
+            hydratedDraftRef.current = false;
             setEditData({
                 question: selectedQuestion.question_text || '',
                 answer: selectedQuestion.answer_text || '',
             });
+            latestSavedRef.current = {
+                question: selectedQuestion.question_text || '',
+                answer: selectedQuestion.answer_text || '',
+            };
+            setSaveState('idle');
+            setSaveMessage('Auto-save ready');
         }
     }, [selectedQuestion]);
+
+    useEffect(() => {
+        if (!selectedQuestion || !isMounted || hydratedDraftRef.current) return;
+
+        const draftKey = getDraftKey(activeSubject, selectedQuestion.question_number);
+        const draftRaw = window.localStorage.getItem(draftKey);
+        hydratedDraftRef.current = true;
+
+        if (!draftRaw) return;
+
+        try {
+            const parsed = JSON.parse(draftRaw) as DraftPayload;
+            if (!parsed.question && !parsed.answer) return;
+
+            setEditData({
+                question: parsed.question || selectedQuestion.question_text || '',
+                answer: parsed.answer || selectedQuestion.answer_text || '',
+            });
+            setSaveState('saved');
+            setSaveMessage('Draft restored from this device');
+        } catch {
+            window.localStorage.removeItem(draftKey);
+        }
+    }, [activeSubject, isMounted, selectedQuestion]);
+
+    const persistDraftLocally = (payload: DraftPayload) => {
+        if (!selectedQuestion || !isMounted) return;
+        const draftKey = getDraftKey(activeSubject, selectedQuestion.question_number);
+        window.localStorage.setItem(draftKey, JSON.stringify(payload));
+    };
+
+    const clearSavedDraft = () => {
+        if (!selectedQuestion || !isMounted) return;
+        const draftKey = getDraftKey(activeSubject, selectedQuestion.question_number);
+        window.localStorage.removeItem(draftKey);
+    };
+
+    const queueStatusReset = () => {
+        if (statusTimerRef.current) window.clearTimeout(statusTimerRef.current);
+        statusTimerRef.current = window.setTimeout(() => {
+            setSaveState('idle');
+            setSaveMessage('Auto-save ready');
+        }, 2200);
+    };
+
+    const saveQuestionData = async (source: 'manual' | 'auto') => {
+        if (!selectedQuestion) return false;
+
+        setSaveState('saving');
+        setSaveMessage(source === 'manual' ? 'Saving now...' : 'Auto-saving draft...');
+
+        const payload = {
+            subject: activeSubject,
+            questionNumber: selectedQuestion.question_number,
+            questionText: editData.question,
+            answerText: editData.answer,
+        };
+
+        try {
+            const resp = await fetch('/api/gamification/questions/save', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+            const data = await resp.json();
+
+            if (!resp.ok || !data.success) {
+                throw new Error(data.error || 'Save failed');
+            }
+
+            await refreshMission();
+            selectedQuestion.question_text = editData.question;
+            selectedQuestion.answer_text = editData.answer;
+            latestSavedRef.current = {
+                question: editData.question,
+                answer: editData.answer,
+            };
+            clearSavedDraft();
+            setSaveState('saved');
+            setSaveMessage(source === 'manual' ? 'Saved to database' : 'Auto-saved to database');
+            queueStatusReset();
+            return true;
+        } catch (e) {
+            const message = e instanceof Error ? e.message : 'Save failed';
+            persistDraftLocally({
+                question: editData.question,
+                answer: editData.answer,
+                updatedAt: Date.now(),
+            });
+            setSaveState('error');
+            setSaveMessage(`Saved locally only: ${message}`);
+            return false;
+        }
+    };
+
+    useEffect(() => {
+        if (!selectedQuestion || !hydratedDraftRef.current) return;
+
+        persistDraftLocally({
+            question: editData.question,
+            answer: editData.answer,
+            updatedAt: Date.now(),
+        });
+
+        const unchanged =
+            editData.question === latestSavedRef.current.question &&
+            editData.answer === latestSavedRef.current.answer;
+
+        if (unchanged) return;
+
+        setSaveState('idle');
+        setSaveMessage('Draft saved locally');
+
+        if (saveTimerRef.current) window.clearTimeout(saveTimerRef.current);
+        saveTimerRef.current = window.setTimeout(() => {
+            void saveQuestionData('auto');
+        }, 1400);
+    }, [editData, selectedQuestion]);
 
     const themeColors = useMemo(() => {
         switch (activeSubject) {
@@ -88,29 +237,8 @@ export default function QuestionModal() {
     if (!selectedQuestion || !isMounted) return null;
 
     const handleSave = async () => {
-        setIsSolving(true);
-        try {
-            const resp = await fetch('/api/gamification/questions/save', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    subject: activeSubject,
-                    questionNumber: selectedQuestion.question_number,
-                    questionText: editData.question,
-                    answerText: editData.answer,
-                }),
-            });
-            const data = await resp.json();
-            if (data.success) {
-                await refreshMission();
-                selectedQuestion.question_text = editData.question;
-                selectedQuestion.answer_text = editData.answer;
-            }
-        } catch (e) {
-            console.error('Failed to save question:', e);
-        } finally {
-            setIsSolving(false);
-        }
+        if (saveTimerRef.current) window.clearTimeout(saveTimerRef.current);
+        await saveQuestionData('manual');
     };
 
     const handleSolve = async () => {
@@ -229,6 +357,9 @@ export default function QuestionModal() {
                             <p className="max-w-2xl text-xs uppercase tracking-[0.35em] text-emerald-200/40 sm:text-sm">
                                 Full screen question chamber. Add your question and answer inside this screen.
                             </p>
+                            <div className="font-tactical text-[10px] uppercase tracking-[0.3em] text-emerald-100/70">
+                                {saveState === 'saving' ? 'SYNC STATUS // SAVING' : `SYNC STATUS // ${saveMessage}`}
+                            </div>
                         </div>
 
                         <div className="flex items-center gap-3 self-end lg:self-auto">
