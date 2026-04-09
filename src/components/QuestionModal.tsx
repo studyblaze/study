@@ -415,13 +415,13 @@ export default function QuestionModal() {
                 <div className="pointer-events-none absolute inset-x-0 top-0 z-[3] h-56 bg-gradient-to-b from-emerald-300/18 via-emerald-400/6 to-transparent" />
 
                 <motion.div
-                    className="relative z-10 flex min-h-dvh flex-col p-3 pt-4 sm:p-6 lg:p-10"
+                    className="relative z-10 flex min-h-dvh flex-col p-4 pt-12 sm:p-8 sm:pt-16 lg:p-12 lg:pt-20"
                     initial={{ opacity: 0, scale: 0.96 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.98 }}
                     transition={{ delay: 0.72, duration: 0.35, ease: 'easeOut' }}
                 >
-                    <header className="mb-6 flex flex-col gap-4 pr-14 sm:pr-16 lg:mb-8 lg:flex-row lg:items-start lg:justify-between lg:pr-0">
+                    <header className="mb-6 flex flex-col gap-4 pr-14 sm:pr-16 lg:mb-10 lg:flex-row lg:items-start lg:justify-between lg:pr-0">
                         <div className="space-y-4">
                             <motion.div
                                 initial={{ x: -20, opacity: 0 }}
@@ -457,7 +457,7 @@ export default function QuestionModal() {
                             <button
                                 onClick={handleSave}
                                 disabled={isSolving}
-                                className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-4 py-3 font-tactical text-[9px] font-black tracking-[0.22em] transition-all hover:border-emerald-300 hover:bg-emerald-400/20 disabled:cursor-not-allowed disabled:opacity-60 sm:px-6 sm:text-[10px] lg:px-8 lg:text-[11px]"
+                                className="rounded-full bg-white px-5 py-3.5 font-tactical text-[9px] font-black tracking-[0.22em] text-black shadow-[0_0_25px_rgba(255,255,255,0.2)] transition-all hover:bg-emerald-400 hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-60 sm:px-6 sm:text-[10px] lg:px-10 lg:text-[11px]"
                             >
                                 {isSolving ? 'SAVING...' : 'SAVE QA'}
                             </button>
@@ -465,7 +465,7 @@ export default function QuestionModal() {
                                 onClick={closeQuestion}
                                 type="button"
                                 aria-label="Exit question modal"
-                                className="group flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-2xl backdrop-blur-md transition-all hover:border-red-500 hover:bg-red-500/20 sm:h-12 sm:w-12 lg:h-14 lg:w-14"
+                                className="group flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-2xl backdrop-blur-md transition-all hover:border-red-500 hover:bg-red-500/20 sm:h-12 sm:w-12 lg:h-16 lg:w-16"
                             >
                                 <span className="text-white/30 transition-all duration-500 group-hover:rotate-90 group-hover:text-red-500">x</span>
                             </button>
