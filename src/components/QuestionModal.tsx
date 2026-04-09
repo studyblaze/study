@@ -599,8 +599,9 @@ export default function QuestionModal() {
                         </div>
                     </div>
                 </motion.div>
-            )}
-        </AnimatePresence>,
-        document.body
-    );
+            </motion.div>
+        )}
+    </AnimatePresence>,
+    document.body
+);
 }
