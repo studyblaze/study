@@ -11,7 +11,6 @@ export async function POST(req: Request) {
     }
 
     const { subject, questionNumber, questionText, answerText, formulaText } = payload;
-    console.log(`[QuestionsSave] Saving ${subject} Node ${questionNumber}...`);
 
     if (!subject || !questionNumber) {
         return NextResponse.json({ error: 'Subject and Question Number are required' }, { status: 400 });
@@ -40,7 +39,6 @@ export async function POST(req: Request) {
             throw error;
         }
 
-        console.log('[QuestionsSave] Successfully saved to database');
         return NextResponse.json({ success: true, question: data });
     } catch (e: any) {
         console.error('[QuestionsSave] Unexpected error:', e.message);

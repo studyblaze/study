@@ -343,6 +343,8 @@ export default function QuestionModal() {
     };
 
     const handleSolve = async () => {
+        const q = selectedQuestion;
+        if (!q) return;
         setIsSolving(true);
         const userId = (window as AppWindow).__USER_ID__ || 'demo-user';
         try {
@@ -352,7 +354,7 @@ export default function QuestionModal() {
                 body: JSON.stringify({
                     userId,
                     type: 'revision',
-                    topicName: `Node ${selectedQuestion.question_number}`,
+                    topicName: `Node ${q.question_number}`,
                     subject: activeSubject,
                 }),
             });

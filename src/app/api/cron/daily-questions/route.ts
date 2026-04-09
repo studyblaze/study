@@ -107,11 +107,14 @@ export async function GET(request: Request) {
     const emailTo = process.env.DAILY_QUESTIONS_EMAIL_TO?.trim();
     const emailFrom = process.env.DAILY_QUESTIONS_EMAIL_FROM?.trim() || 'Study Daily <onboarding@resend.dev>';
 
-    if (!resendApiKey || !emailTo) {
-        return NextResponse.json(
-            { error: 'Missing RESEND_API_KEY or DAILY_QUESTIONS_EMAIL_TO environment variables.' },
-            { status: 500 }
-        );
+    if (!resendApiKey) {
+        return NextResponse.json({ error: 'Production Error: RESEND_API_KEY is not defined in environment variables.' }, { status: 500 });
+    }
+    if (!emailTo) {
+        return NextResponse.json({ error: 'Production Error: DAILY_QUESTIONS_EMAIL_TO is not defined.' }, { status: 500 });
+    }
+    if (!resendApiKey.startsWith('re_')) {
+        return NextResponse.json({ error: 'Production Error: RESEND_API_KEY format is invalid (should start with re_).' }, { status: 500 });
     }
 
     try {
