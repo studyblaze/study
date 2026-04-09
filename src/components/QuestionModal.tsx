@@ -335,7 +335,7 @@ export default function QuestionModal() {
         }
     }, [activeSubject]);
 
-    if (!selectedQuestion || !isMounted) return null;
+    if (!isMounted) return null;
 
     const handleSave = async () => {
         if (saveTimerRef.current) window.clearTimeout(saveTimerRef.current);
@@ -370,7 +370,8 @@ export default function QuestionModal() {
 
     return createPortal(
         <AnimatePresence>
-            <motion.div
+            {selectedQuestion && (
+                <motion.div
                 className="fixed inset-0 z-[99999] flex h-dvh w-screen flex-col overflow-y-auto overflow-x-hidden bg-black/95 text-white"
                 style={{
                     '--click-x': `${clickOrigin?.x || 50}px`,
@@ -598,9 +599,8 @@ export default function QuestionModal() {
                         </div>
                     </div>
                 </motion.div>
-            </motion.div>
-        </AnimatePresence>
-        ,
+            )}
+        </AnimatePresence>,
         document.body
     );
 }
