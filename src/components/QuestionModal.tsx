@@ -382,8 +382,8 @@ export default function QuestionModal() {
                     }}
                     initial={{ scale: 0.01, opacity: 1 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.01, opacity: 0 }}
-                    transition={{ duration: 1.05, ease: [0.22, 1, 0.36, 1] }}
+                    exit={{ scale: [1, 1.15, 0.01], opacity: [1, 0.8, 0] }}
+                    transition={{ duration: 0.85, times: [0, 0.15, 1], ease: [0.4, 0, 0.2, 1] }}
                 />
 
                 <motion.div

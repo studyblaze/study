@@ -2,7 +2,16 @@ import { NextResponse } from 'next/server';
 import { getServiceSupabase } from '../../_lib/supabase';
 
 export async function POST(req: Request) {
-    const { subject, questionNumber, questionText, answerText } = await req.json();
+    let payload;
+    try {
+        payload = await req.json();
+    } catch (e) {
+        console.error('[QuestionsSave] Failed to parse JSON body');
+        return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
+    }
+
+    const { subject, questionNumber, questionText, answerText } = payload;
+    console.log(`[QuestionsSave] Saving ${subject} Node ${questionNumber}...`);
 
     if (!subject || !questionNumber) {
         return NextResponse.json({ error: 'Subject and Question Number are required' }, { status: 400 });
@@ -10,6 +19,7 @@ export async function POST(req: Request) {
 
     try {
         const supabase = getServiceSupabase();
+        
         // Upsert question data
         const { data, error } = await supabase
             .from('subject_questions')
@@ -24,10 +34,15 @@ export async function POST(req: Request) {
             .select()
             .single();
 
-        if (error) throw error;
+        if (error) {
+            console.error('[QuestionsSave] Supabase error:', error.message, error.code);
+            throw error;
+        }
 
+        console.log('[QuestionsSave] Successfully saved to database');
         return NextResponse.json({ success: true, question: data });
     } catch (e: any) {
-        return NextResponse.json({ error: e.message }, { status: 500 });
+        console.error('[QuestionsSave] Unexpected error:', e.message);
+        return NextResponse.json({ error: e.message || 'An unexpected error occurred' }, { status: 500 });
     }
 }
