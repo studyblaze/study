@@ -341,19 +341,19 @@ h1, h2, h3, .font-tactical {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 3.2rem;
-  min-height: 1.6rem;
+  min-width: 2.6rem;
+  min-height: 1.3rem;
   border: 1px solid rgba(220, 38, 38, 0.28);
   border-radius: 9999px;
   background: rgba(255, 255, 255, 0.98);
   color: rgb(153, 27, 27);
-  padding: 0.2rem 0.6rem;
+  padding: 0.15rem 0.45rem;
   font-family: var(--font-tactical);
-  font-size: 0.55rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  font-size: 0.48rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.2);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.18);
   cursor: pointer;
   user-select: none;
   pointer-events: auto;
@@ -364,5 +364,5 @@ h1, h2, h3, .font-tactical {
   background: rgb(254, 226, 226);
   border-color: rgba(220, 38, 38, 0.4);
   transform: scale(1.05);
-  box-shadow: 0 10px 30px rgba(220, 38, 38, 0.15);
+  box-shadow: 0 8px 25px rgba(220, 38, 38, 0.2);
 }
