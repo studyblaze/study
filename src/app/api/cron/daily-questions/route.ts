@@ -57,6 +57,11 @@ function buildEmailHtml(groupedQuestions: Record<DailySubject, DailyQuestionItem
                             <div style="font-size: 14px; line-height: 1.6; color: #e5e7eb;">
                                 ${preview || `Question ${index + 1}`}
                             </div>
+                            ${question.formula_text ? `
+                                <div style="margin-top: 8px; font-size: 11px; font-style: italic; color: #9ca3af;">
+                                    + Formula Reference Available
+                                </div>
+                            ` : ''}
                         </li>
                     `;
                 })
@@ -117,7 +122,7 @@ export async function GET(request: Request) {
             const quota = DAILY_QUESTION_QUOTA[subject];
             const { data, error } = await supabase
                 .from('subject_questions')
-                .select('id,subject,question_number,question_text,answer_text')
+                .select('id,subject,question_number,question_text,answer_text,formula_text')
                 .eq('subject', subject);
 
             if (error) throw error;

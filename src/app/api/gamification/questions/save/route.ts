@@ -10,7 +10,7 @@ export async function POST(req: Request) {
         return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
     }
 
-    const { subject, questionNumber, questionText, answerText } = payload;
+    const { subject, questionNumber, questionText, answerText, formulaText } = payload;
     console.log(`[QuestionsSave] Saving ${subject} Node ${questionNumber}...`);
 
     if (!subject || !questionNumber) {
@@ -27,7 +27,8 @@ export async function POST(req: Request) {
                 subject,
                 question_number: questionNumber,
                 question_text: questionText,
-                answer_text: answerText
+                answer_text: answerText,
+                formula_text: formulaText
             }, { 
                 onConflict: 'subject,question_number' 
             })

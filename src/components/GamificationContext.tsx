@@ -31,6 +31,7 @@ export interface QuestionData {
     question_number: number;
     question_text: string;
     answer_text: string;
+    formula_text?: string;
 }
 
 interface GamificationContextType {

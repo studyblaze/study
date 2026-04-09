@@ -13,6 +13,7 @@ type SaveState = 'idle' | 'saving' | 'saved' | 'error';
 interface DraftPayload {
     question: string;
     answer: string;
+    formula: string;
     updatedAt: number;
 }
 
@@ -132,13 +133,13 @@ export default function QuestionModal() {
     const { selectedQuestion, clickOrigin, closeQuestion, refreshMission, activeSubject } = useGamification();
     const [isSolving, setIsSolving] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
-    const [editData, setEditData] = useState({ question: '', answer: '' });
+    const [editData, setEditData] = useState({ question: '', answer: '', formula: '' });
     const [saveState, setSaveState] = useState<SaveState>('idle');
     const [saveMessage, setSaveMessage] = useState('Auto-save ready');
     const hydratedDraftRef = useRef(false);
     const saveTimerRef = useRef<number | null>(null);
     const statusTimerRef = useRef<number | null>(null);
-    const latestSavedRef = useRef({ question: '', answer: '' });
+    const latestSavedRef = useRef({ question: '', answer: '', formula: '' });
 
     useEffect(() => {
         setIsMounted(true);
@@ -178,10 +179,12 @@ export default function QuestionModal() {
             setEditData({
                 question: selectedQuestion.question_text || '',
                 answer: selectedQuestion.answer_text || '',
+                formula: selectedQuestion.formula_text || '',
             });
             latestSavedRef.current = {
                 question: selectedQuestion.question_text || '',
                 answer: selectedQuestion.answer_text || '',
+                formula: selectedQuestion.formula_text || '',
             };
             setSaveState('idle');
             setSaveMessage('Auto-save ready');
@@ -202,6 +205,7 @@ export default function QuestionModal() {
             setEditData({
                 question: parsed.question || selectedQuestion.question_text || '',
                 answer: parsed.answer || selectedQuestion.answer_text || '',
+                formula: parsed.formula || selectedQuestion.formula_text || '',
             });
             setSaveState('saved');
             setSaveMessage('Draft restored from this device');
@@ -247,6 +251,7 @@ export default function QuestionModal() {
             questionNumber: selectedQuestion.question_number,
             questionText: editData.question,
             answerText: editData.answer,
+            formulaText: editData.formula,
         };
 
         try {
@@ -264,9 +269,11 @@ export default function QuestionModal() {
             await refreshMission();
             selectedQuestion.question_text = editData.question;
             selectedQuestion.answer_text = editData.answer;
+            selectedQuestion.formula_text = editData.formula;
             latestSavedRef.current = {
                 question: editData.question,
                 answer: editData.answer,
+                formula: editData.formula,
             };
             await clearSavedDraft();
             setSaveState('saved');
@@ -278,6 +285,7 @@ export default function QuestionModal() {
             void persistDraftLocally({
                 question: editData.question,
                 answer: editData.answer,
+                formula: editData.formula,
                 updatedAt: Date.now(),
             });
             setSaveState('error');
@@ -292,12 +300,14 @@ export default function QuestionModal() {
         void persistDraftLocally({
             question: editData.question,
             answer: editData.answer,
+            formula: editData.formula,
             updatedAt: Date.now(),
         });
 
         const unchanged =
             editData.question === latestSavedRef.current.question &&
-            editData.answer === latestSavedRef.current.answer;
+            editData.answer === latestSavedRef.current.answer &&
+            editData.formula === latestSavedRef.current.formula;
 
         if (unchanged) return;
 
@@ -520,6 +530,26 @@ export default function QuestionModal() {
                         </motion.div>
 
                         <div className="flex w-full min-w-0 flex-col gap-6 xl:w-[34rem] xl:max-w-[34rem]">
+                            {(activeSubject === 'M4' || activeSubject === 'M3') && (
+                                <motion.div
+                                    initial={{ x: 24, opacity: 0 }}
+                                    animate={{ x: 0, opacity: 1 }}
+                                    transition={{ delay: 0.4 }}
+                                    className="relative flex min-h-[22rem] flex-col overflow-hidden rounded-[2rem] border border-amber-300/20 bg-black/35 p-6 backdrop-blur-xl sm:p-8"
+                                >
+                                    <div className="space-y-6">
+                                        <span className="font-tactical text-[10px] font-black uppercase tracking-[0.5em] text-white/20">FORMULA VAULT</span>
+                                        <FloatingCanvasEditor
+                                            label="FORMULA CLOUD"
+                                            value={editData.formula}
+                                            onChange={(formula) => setEditData({ ...editData, formula })}
+                                            placeholder="Store key formulas and properties here..."
+                                            accentClassName="text-amber-500"
+                                        />
+                                    </div>
+                                </motion.div>
+                            )}
+
                             <motion.div
                                 initial={{ x: 24, opacity: 0 }}
                                 animate={{ x: 0, opacity: 1 }}

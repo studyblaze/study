@@ -13,6 +13,7 @@ export interface DailyQuestionItem {
     question_number: number;
     question_text: string;
     answer_text?: string;
+    formula_text?: string;
 }
 
 export function sampleQuestions<T>(items: T[], count: number) {
